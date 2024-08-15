@@ -13,10 +13,18 @@ Este é um projeto de API desenvolvido em Laravel, utilizando o Laravel Passport
 
 Siga os passos abaixo para configurar o projeto localmente.
 
-1. **Clone o Repositório:**
+# Clone o repositório
+git clone https://github.com/usuario/repositorio.git
 
-   ```bash
-   git clone https://github.com/usuario/repositorio.git
-   cd repositorio
+# Navegue até o diretório do projeto
+cd repositorio
 
+# Instale as dependências
+composer install
+
+# Execute as migrações do banco de dados
+php artisan migrate
+
+# Gere a chave de aplicativo
+php artisan key:generate
 
