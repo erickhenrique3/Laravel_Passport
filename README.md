@@ -14,7 +14,7 @@ Este é um projeto de API desenvolvido em Laravel, utilizando o Laravel Passport
 Siga os passos abaixo para configurar o projeto localmente.
 
 # Clone o repositório
-git clone https://github.com/usuario/repositorio.git
+git clone https://github.com/erickhenrique3/laravel_passport.git
 
 # Navegue até o diretório do projeto
 cd repositorio
