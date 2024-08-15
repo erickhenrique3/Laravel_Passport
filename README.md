@@ -17,7 +17,7 @@ Siga os passos abaixo para configurar o projeto localmente.
 git clone https://github.com/erickhenrique3/laravel_passport.git
 
 ## Navegue até o diretório do projeto
-cd repositorio
+cd laravel_passport
 
 ## Instale as dependências
 composer install
