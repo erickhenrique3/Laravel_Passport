@@ -22,9 +22,12 @@ cd laravel_passport
 ## Instale as dependências
 composer install
 
-## Execute as migrações do banco de dados
-php artisan migrate
+## Execute as migrações e seeds
+php artisan migrate --seed
 
 ## Gere a chave de aplicativo
 php artisan key:generate
+
+
+
 
