@@ -2,16 +2,16 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\API\ApiController;
+use App\Http\Controllers\API\AuthenticationController;
 
 
 
-Route::post('register', [ApiController::class, 'register']);
-Route::post('login', [ApiController::class, 'login']);
+Route::post('register', [AuthenticationController::class, 'register']);
+Route::post('login', [AuthenticationController::class, 'login']);
 
 //protected routes
-Route::middleware('auth:api')->group(function () {
-    Route::get('profile', [ApiController::class, 'profile']);
-    Route::get('logout', [ApiController::class, 'logout']);
+Route::middleware('token')->group(function () {
+    Route::get('profile', [AuthenticationController::class, 'profile']);
+    Route::get('logout', [AuthenticationController::class, 'logout']);
 });
 

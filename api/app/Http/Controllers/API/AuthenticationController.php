@@ -10,12 +10,15 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Hash;
 
-class ApiController extends Controller
+class AuthenticationController extends Controller
 {
-
+	/**
+	 * @method Registra um novo usuário.
+	 * @param Request $request Dados do usuário para o registro.
+	 * @return JsonResponse Resposta JSON com o status da operação e dados do usuário.
+	 */
 	public function register(Request $request): JsonResponse
 	{
-		
 		$validatedData = $request->validate([
 			"name" => "required|string",
 			"email" => "required|string|email|unique:users",
@@ -35,7 +38,11 @@ class ApiController extends Controller
 		]);
 	}
 
-	
+	/**
+	 * @method Faz login do usuário e retorna um token de autenticação.
+	 * @param Request $request Dados de login do usuário.
+	 * @return JsonResponse Resposta JSON com o status da operação e token de autenticação.
+	 */
 	public function login(Request $request): JsonResponse
 	{
 		$request->validate([
@@ -51,26 +58,26 @@ class ApiController extends Controller
 				return response()->json([
 					"status" => true,
 					"message" => "Login sucessfull",
-					"data" => [],
 					"token" => $token
 				]);
 			} else {
 				return response()->json([
 					"status" => false,
-					"message" => "Password din'd Match",
-					"data" => []
+					"message" => "Password din'd Match"
 				]);
 			}
 		} else {
 			return response()->json([
 				"status" => false,
 				"message" => "Invalid email value",
-				"data" => []
 			]);
 		}
 	}
 
-
+	/**
+	 * @method Retorna as informações do perfil do usuário autenticado.
+	 * @return JsonResponse Resposta JSON com o status da operação e dados do perfil do usuário.
+	 */
 	public function profile(): JsonResponse {
 		$userData = Auth::user();
 		return response()->json([
@@ -80,6 +87,11 @@ class ApiController extends Controller
 		]);
 	}
     
+	/**
+	 * @method Faz logout do usuário e revoga o token de autenticação.
+	 * @param Request $request Dados da solicitação de logout.
+	 * @return JsonResponse Resposta JSON com o status da operação.
+	 */
 	public function logout(Request $request): JsonResponse {
 		$request->user()->token()->revoke();
 
