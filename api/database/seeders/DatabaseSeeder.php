@@ -14,13 +14,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        
         $this->call(PassportClientSeeder::class);
         User::create([
             'name' => 'Test User',
             'email' => 'test@example.com',
-            'telephone' => '123456789', // Adicione este campo
-            'password' => Hash::make('password'), // Use Hash::make para senha
+            'telephone' => '123456789', 
+            'password' => Hash::make('password'), 
         ]);
     }
 }
