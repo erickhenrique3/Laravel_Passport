@@ -27,13 +27,5 @@ php artisan migrate
 
 ## Gere a chave de aplicativo
 php artisan key:generate
-6. **Execute as migrações e seeds**
 
-    Isso criará as tabelas do banco de dados e também gerará um client do Passport, se ainda não existir.
-
-    ```bash
-    php artisan migrate --seed
-    ```
-
-    O comando `--seed` executará a seed `PassportClientSeeder`, que irá criar um client de acesso pessoal do Passport. Isso facilita a configuração inicial para novos desenvolvedores e ambientes.
 
