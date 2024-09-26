@@ -9,7 +9,7 @@ use Tests\TestCase;
 class AuthenticationControllerTest extends TestCase
 {
     // esse use RefresDatabase faz com que a cada comando de teste ele reseta o banco pra não atrapalhar
-    // use RefreshDatabase;
+    use RefreshDatabase;
 
     /**
      * Testa o registro de um novo usuário.
