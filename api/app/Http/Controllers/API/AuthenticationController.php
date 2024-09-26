@@ -79,7 +79,14 @@ class AuthenticationController extends Controller
 				]);
 			}
 		}
+		return response()->json([
+			'status' => false,
+			'message' => 'Invalid credentials',
+	], 401);
 	}
+
+
+
 
 	/**
 	 * @method Retorna as informações do perfil do usuário autenticado.
