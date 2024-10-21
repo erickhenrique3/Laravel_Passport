@@ -9,6 +9,8 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use PhpAmqpLib\Connection\AMQPStreamConnection;
+use PhpAmqpLib\Message\AMQPMessage;
 
 class AuthenticationController extends Controller
 {
@@ -40,6 +42,23 @@ class AuthenticationController extends Controller
 			"telephone" => $request->telephone,
 			"password" => bcrypt($request->password)
 		]);
+
+		$connection = new AMQPStreamConnection(
+			env('RABBITMQ_HOST'),
+			env('RABBITMQ_PORT'),
+			env('RABBITMQ_USER'),
+			env('RABBITMQ_PASSWORD')
+		);
+
+		$channel = $connection->channel();
+		$channel->queue_declare(env('RABBITMQ_QUEUE'), false, true, false, false, false, []);
+
+		$data = json_encode(['email' => $request->email]);
+		$msg = new AMQPMessage($data);
+		$channel->basic_publish($msg, '', env('RABBITMQ_QUEUE'));
+
+		$channel->close();
+		$connection->close();
 
 		return response()->json([
 			"status" => true,
